@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('plexusCanvas');
 
-    if (!canvas) {
-        console.error("Холст #plexusCanvas не найден!");
-        return;
-    }
-
     const ctx = canvas.getContext('2d');
 
-    // Настройки Plexus-эффекта
+
     const config = {
         pointCount: 150,
         maxDistance: 150,
@@ -18,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             points: 'rgba(255, 255, 255, 0.8)',
             lines: 'rgba(200, 200, 200, 0.3)'
         },
-        cursorAttraction: 80 // Увеличил радиус притяжения для лучшей видимости реакции
+        cursorAttraction: 80
     };
 
     let points = [];
@@ -44,24 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePoints() {
-        // Обновляем позиции точек
+
         points.forEach(point => {
-            // Движение точек
+  
             point.x += point.vx;
             point.y += point.vy;
 
-            // Отскок от границ
+  
             if (point.x < 0 || point.x > canvas.width) point.vx *= -1;
             if (point.y < 0 || point.y > canvas.height) point.vy *= -1;
 
-            // Притяжение к курсору
+
             const dx = mouseX - point.x;
             const dy = mouseY - point.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < config.cursorAttraction) {
                 const force = (config.cursorAttraction - distance) / config.cursorAttraction;
-                point.x -= dx * force * 0.03; // Увеличил коэффициент для заметности
+                point.x -= dx * force * 0.03;
                 point.y -= dy * force * 0.03;
             }
         });
@@ -90,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Рисуем точки
         points.forEach(point => {
             ctx.beginPath();
             ctx.arc(point.x, point.y, config.pointSize, 0, Math.PI * 2);
@@ -105,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
 
-    // Обработчики событий — теперь вешаем на document для надёжности
     window.addEventListener('resize', resizeCanvas);
 
     document.addEventListener('mousemove', (e) => {
@@ -120,9 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mouseY = touch.clientY;
     });
 
-    // Инициализация
     resizeCanvas();
     animate();
 
-    console.log("Plexus-эффект активирован и реагирует на курсор!");
 });

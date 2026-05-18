@@ -3,13 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const devTitle = document.getElementById('dev-title');
     const devDescription = document.getElementById('dev-description');
 
-    // Проверка, найдены ли элементы
-    if (!devTitle || !devDescription) {
-        console.error("Элементы для перевода не найдены в DOM!");
-        return;
-    }
 
-    // Тексты для разных языков
     const translations = {
         ru: {
             title: 'Сайт в разработке',
@@ -23,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     languageButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Убираем активный класс у всех кнопок
+        
             languageButtons.forEach(btn => btn.classList.remove('active'));
-            // Добавляем активный класс к нажатой кнопке
+      
             this.classList.add('active');
 
             const lang = this.getAttribute('data-lang');
@@ -40,5 +34,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    console.log("Скрипт смены языка загружен и готов к работе");
 });

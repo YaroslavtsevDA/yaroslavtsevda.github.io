@@ -4,30 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сайт в разработке</title>
-    <!-- Подключаем стили -->
+    <link rel="icon" href="graphics/favicon_1.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body style="--cursor-x: 50vw; --cursor-y: 50vh;">
-    <!-- Переключатель языков -->
     <canvas id="plexusCanvas"></canvas>
     <div class="lang-switcher">
         <button class="lang-btn active" data-lang="ru">RU</button>
         <button class="lang-btn" data-lang="en">EN</button>
     </div>
-
-    <!-- Сообщение о разработке -->
     <div class="dev-message">
         <h1 id="dev-title">Сайт в разработке</h1>
         <p id="dev-description">Мы работаем над созданием этого сайта.</p>
     </div>
-
-    <!-- Слои для градиента -->
     <div class="background-layer"></div>
     <div class="overlay"></div>
-    <!-- Подключаем скрипты в правильном порядке -->
-    <!-- Сначала — логика смены языка -->
     <script src="src/language-switcher.js"></script>
-    <!-- Затем — интерактивность градиента -->
     <script src="src/plexus-effect.js"></script>
 </body>
 </html>
